@@ -1,0 +1,32 @@
+\section{Representação Computacional} 
+
+\begin{enumerate}[label=\textbf{\arabic*.}, ref=\arabic*, resume]
+    \item\textsuperscript{*} Descreva como computar eficientemente o grafo transposto de um grafo direcionado $G$, quando $G$ é representado 
+    \begin{enumerate}
+        \item por listas de adjacência, ou 
+        \item pela matriz de adjacência.
+    \end{enumerate}
+    Expresse a eficiência de ambas as soluções em termos assintóticos em função do tamanho do grafo $G$. 
+    
+    \item\textsuperscript{\#} Considere a idéia de evitar o desperdício de espaço na representação da matriz de adjacência de um grafo $G$ com $V(G)=\{1,...,n\}$ usando um vetor $m$ contendo somente os elementos acima da diagonal principal de $M_{G}$, de tal maneira que
+    \begin{equation*}
+    M_{G}[u,v]=\begin{cases}m[f(u,v)],&\text{se } u<v,\\ 0,&\text{se } u=v,\\ m[f(v,u)],&\text{se } u>v,\end{cases} 
+    \end{equation*}
+    onde $f:\{(u,v)\in V(G)\times V(G)|u<v\}\rightarrow\{0,...,N(n)-1\}$ é a função que faz a correspondência entre os elementos de $M_{G}$ em $m$, e $N(n)$ é o tamanho do vetor $m$. 
+    \begin{enumerate}
+        \item Dê uma expressão para $N(n)$. 
+        \item Dê uma expressão para $f(u,v)$. 
+        \item Dê uma expressão para $f^{-1}(k)$: $0\le k<N(n)$. 
+        \item Escreva a função \texttt{unsigned int vizinho (unsigned int *m, unsigned int u, unsigned int v);} que devolve o valor de $M_{G}[u,v]$, onde $M_{G}$ é representado pelo vetor $m$ tal como descrito acima. 
+    \end{enumerate}
+    
+    \item\textsuperscript{*} Suponha que a representação de um número inteiro consome $i$ bytes e a representação de um apontador consome $a$ bytes e considere o problema de representar um grafo ponderado de $n$ vértices e $m$ arestas nesta linguagem. 
+    \begin{enumerate}
+        \item Expresse o total de memória consumido na representação do grafo em função de $i$, $a$, $n$ e $m$ ao usar: 
+        \begin{enumerate}
+            \item matriz de adjacência 
+            \item listas de adjacência 
+        \end{enumerate}
+        \item Indique como decidir, em função de $i$, $a$, $n$ e $m$, qual das duas representações ocupa menos memória. 
+    \end{enumerate}
+\end{enumerate}

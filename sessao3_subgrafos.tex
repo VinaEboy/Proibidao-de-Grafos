@@ -1,0 +1,193 @@
+\section{Subgrafos}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, ref=\arabic*, resume]
+    \item\textsuperscript{*} Dê um exemplo de um grafo $G$ com subgrafos $H_{1}$, $H_{2}$ e $H_{3}$ tais que 
+    \begin{enumerate}
+        \item o grafo $H_{1}$ é um subgrafo induzido por vértices; 
+        \item o grafo $H_{2}$ é um subgrafo induzido por arestas mas não é um subgrafo induzido por vértices; 
+        \item o grafo $H_{3}$ não é um subgrafo induzido por arestas nem por vértices. 
+    \end{enumerate}
+    
+    \item Seja $G$ um grafo e seja $X$ um conjunto de vértices de $G$. É verdade que todo subgrafo de $G$ induzido por vértices pode ser obtido a partir de $G$ pela remoção de um conjunto de vértices?
+    
+    \item\textsuperscript{*} Seja $G$ um grafo e seja $X$ um conjunto de arestas de $G$. É verdade que $G-X=G[E(G)-X]$? Justifique. 
+    
+    \item\textsuperscript{*} É verdade que todo subgrafo de $G$ induzido por arestas pode ser obtido a partir de $G$ por uma sequência de remoções de arestas?
+    Seja $G$ um grafo e seja $v$ um vértice de $G$. Prove que $|E(G-v)|=|E(G)|-\delta_{G}(v)$.
+    
+    \item\textsuperscript{*} Seja $G$ um grafo e sejam $A\subseteq E(G)$ e $V=\bigcup_{\alpha\in A}\alpha$. É verdade que $G[A]=G[V]$? Justifique. 
+    
+    \item\textsuperscript{\underline{o}} Prove que o problema de determinar o tamanho máximo de um conjunto independente de um grafo é um problema NP-Difícil.
+    
+    \item Prove que o problema Isomorfismo de Subgrafo é NP-Difícil.
+    
+    \item\textsuperscript{*} Prove que se $G$ é um grafo, então, 
+    
+    \begin{enumerate}
+        \item Um conjunto $X$ é independente em $G$ se e somente se $X$ é clique em $\overline{G}$
+        \item $\alpha(G)=\omega(\overline{G})$ 
+    \end{enumerate}
+    
+    \item\textsuperscript{*} Qual o tamanho da maior clique que pode ter um grafo de $n$ vértices e $m$ arestas? 
+    
+    \item\textsuperscript{\#} Considere o seguinte algoritmo guloso para computar um conjunto independente de um grafo $G$. 
+    \begin{verbatim}
+    Independente(G)
+    I <- vazio
+    Enquanto V(G) != vazio
+        v <- vértice de grau mínimo em G
+        acrescente v a I
+        remova v e \Gamma_G(v) de G
+    Devolva I
+    \end{verbatim} 
+    \begin{enumerate}
+        \item Sejam $n$ e $\Delta$ respectivamente, o número de vértices no grafo $G$ e seu grau máximo ao início do algoritmo. Prove que, ao início do laço, sempre é verdade que $n\le|V(G)|+|I|(\Delta+1)$. 
+        \item Conclua daí que $\alpha(G)\ge\frac{|V(G)|}{\Delta(G)+1}$, para todo grafo $G$. 
+        \item Conclua também que $\omega(G)\ge\frac{|V(G)|}{|V(G)|-\delta(G)+1}$ para todo grafo $G$. 
+        
+    \end{enumerate}
+    
+    \item\textsuperscript{\#} Prove que todo grafo com pelo menos 6 vértices tem uma clique ou um conjunto independente com 3 vértices. 
+    
+    \item\textsuperscript{*} Prove que $\omega(G)\le\chi(G)$ para todo grafo $G$. 
+    
+    \item\textsuperscript{*} Prove que para todo grafo $G$, $\omega(G)\le\Delta(G)+1$. 
+    
+    \item\textsuperscript{*} Seja $H$ um subgrafo de um grafo $G$. Decida se as afirmações abaixo são verdadeiras ou não, justificando sua resposta em cada caso. 
+    \begin{enumerate}
+        \item $\alpha(H)\le\alpha(G)$? 
+        \item $\alpha(G)\le\alpha(H)$? 
+        \item $\omega(G)\le\omega(H)$? 
+        \item $\omega(H)\le\omega(G)$?
+    \end{enumerate}
+    
+    \item\textsuperscript{*} Prove que um grafo $G$ é bipartido se e somente se $E(G)=\partial_{G}(X)$ para algum $X\subseteq V(G)$ e que, neste caso, $\{X,V(G)-X\}$ é uma bipartição de $G$.
+    
+    \item Prove que se $X, Y$ é uma bipartição do grafo $G$, então $G$ tem no máximo $|X||Y|$ arestas. 
+    
+    \item Prove que um grafo bipartido de $n$ vértices tem no máximo $\lfloor\frac{n^{2}}{4}\rfloor$ arestas. 
+    
+    \item\textsuperscript{*} Prove que o complemento de um grafo bipartido $G$ é conexo se e somente se $G$ não é (bipartido) completo. 
+    
+    \item\textsuperscript{*} Prove que o n-cubo é bipartido, para todo $n\ge1$.
+    
+    \item\textsuperscript{@} Prove que o problema de Coloração é NP-difícil. 
+    
+    \item\textsuperscript{@} Prove que o problema de determinar o número cromático de um grafo é NP-Difícil. 
+    
+    \item\textsuperscript{*} Considere o algoritmo abaixo que colore os vértices de um grafo dado $G$. 
+    \begin{verbatim}
+    Colore(G)
+    C <- vazio
+    Enquanto existe vértice de G que não pertence a nenhum conjunto em C
+        v <- vértice de G que não pertence a nenhum conjunto em C
+        Se v não tem vizinho em algum conjunto K em C
+            acrescente v ao conjunto K
+        Senão
+            acrescente o conjunto {v} a C
+    Devolva C
+    \end{verbatim} 
+    \begin{enumerate}
+        \item Prove que o algoritmo nem sempre devolve uma coloração mínima do grafo.
+        \item Um estudante afirma que se o vértice escolhido no início do laço tiver o maior grau possível, então o algoritmo devolve sempre uma coloração mínima do grafo. Ele está correto? Justifique. 
+        \item Outro estudante afirma que se o vértice escolhido no início do laço tiver o menor grau possível, então o algoritmo devolve sempre uma coloração mínima do grafo. Ele está correto? Justifique. 
+    \end{enumerate}
+
+\end{enumerate}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, ref=\arabic*, resume]
+    \item\textsuperscript{*} Dê um exemplo de um grafo $G$ com subgrafos $H_{1}$, $H_{2}$ e $H_{3}$ tais que 
+    \begin{enumerate}
+        \item o grafo $H_{1}$ é um subgrafo induzido por vértices; 
+        \item o grafo $H_{2}$ é um subgrafo induzido por arestas mas não é um subgrafo induzido por vértices; 
+        \item o grafo $H_{3}$ não é um subgrafo induzido por arestas nem por vértices. 
+    \end{enumerate}
+    
+    \item Seja $G$ um grafo e seja $X$ um conjunto de vértices de $G$. É verdade que todo subgrafo de $G$ induzido por vértices pode ser obtido a partir de $G$ pela remoção de um conjunto de vértices?
+    
+    \item\textsuperscript{*} Seja $G$ um grafo e seja $X$ um conjunto de arestas de $G$. É verdade que $G-X=G[E(G)-X]$? Justifique. 
+    
+    \item\textsuperscript{*} É verdade que todo subgrafo de $G$ induzido por arestas pode ser obtido a partir de $G$ por uma sequência de remoções de arestas?
+    Seja $G$ um grafo e seja $v$ um vértice de $G$. Prove que $|E(G-v)|=|E(G)|-\delta_{G}(v)$.
+    
+    \item\textsuperscript{*} Seja $G$ um grafo e sejam $A\subseteq E(G)$ e $V=\bigcup_{\alpha\in A}\alpha$. É verdade que $G[A]=G[V]$? Justifique. 
+    
+    \item\textsuperscript{\underline{o}} Prove que o problema de determinar o tamanho máximo de um conjunto independente de um grafo é um problema NP-Difícil.
+    
+    \item Prove que o problema Isomorfismo de Subgrafo é NP-Difícil.
+    
+    \item\textsuperscript{*} Prove que se $G$ é um grafo, então, 
+    
+    \begin{enumerate}
+        \item Um conjunto $X$ é independente em $G$ se e somente se $X$ é clique em $\overline{G}$
+        \item $\alpha(G)=\omega(\overline{G})$ 
+    \end{enumerate}
+    
+    \item\textsuperscript{*} Qual o tamanho da maior clique que pode ter um grafo de $n$ vértices e $m$ arestas? 
+    
+    \item\textsuperscript{\#} Considere o seguinte algoritmo guloso para computar um conjunto independente de um grafo $G$. 
+    \begin{verbatim}
+    Independente(G)
+    I <- vazio
+    Enquanto V(G) != vazio
+        v <- vértice de grau mínimo em G
+        acrescente v a I
+        remova v e \Gamma_G(v) de G
+    Devolva I
+    \end{verbatim} 
+    \begin{enumerate}
+        \item Sejam $n$ e $\Delta$ respectivamente, o número de vértices no grafo $G$ e seu grau máximo ao início do algoritmo. Prove que, ao início do laço, sempre é verdade que $n\le|V(G)|+|I|(\Delta+1)$. 
+        \item Conclua daí que $\alpha(G)\ge\frac{|V(G)|}{\Delta(G)+1}$, para todo grafo $G$. 
+        \item Conclua também que $\omega(G)\ge\frac{|V(G)|}{|V(G)|-\delta(G)+1}$ para todo grafo $G$. 
+        
+    \end{enumerate}
+    
+    \item\textsuperscript{\#} Prove que todo grafo com pelo menos 6 vértices tem uma clique ou um conjunto independente com 3 vértices. 
+    
+    \item\textsuperscript{*} Prove que $\omega(G)\le\chi(G)$ para todo grafo $G$. 
+    
+    \item\textsuperscript{*} Prove que para todo grafo $G$, $\omega(G)\le\Delta(G)+1$. 
+    
+    \item\textsuperscript{*} Seja $H$ um subgrafo de um grafo $G$. Decida se as afirmações abaixo são verdadeiras ou não, justificando sua resposta em cada caso. 
+    \begin{enumerate}
+        \item $\alpha(H)\le\alpha(G)$? 
+        \item $\alpha(G)\le\alpha(H)$? 
+        \item $\omega(G)\le\omega(H)$? 
+        \item $\omega(H)\le\omega(G)$?
+    \end{enumerate}
+    
+    \item\textsuperscript{*} Prove que um grafo $G$ é bipartido se e somente se $E(G)=\partial_{G}(X)$ para algum $X\subseteq V(G)$ e que, neste caso, $\{X,V(G)-X\}$ é uma bipartição de $G$.
+    
+    \item Prove que se $X, Y$ é uma bipartição do grafo $G$, então $G$ tem no máximo $|X||Y|$ arestas. 
+    
+    \item Prove que um grafo bipartido de $n$ vértices tem no máximo $\lfloor\frac{n^{2}}{4}\rfloor$ arestas. 
+    
+    \item\textsuperscript{*} Prove que o complemento de um grafo bipartido $G$ é conexo se e somente se $G$ não é (bipartido) completo. 
+    
+    \item\textsuperscript{*} Prove que o n-cubo é bipartido, para todo $n\ge1$.
+    
+    \item\textsuperscript{@} Prove que o problema de Coloração é NP-difícil. 
+    
+    \item\textsuperscript{@} Prove que o problema de determinar o número cromático de um grafo é NP-Difícil. 
+    
+    \item\textsuperscript{*} Considere o algoritmo abaixo que colore os vértices de um grafo dado $G$. 
+    \begin{verbatim}
+    Colore(G)
+    C <- vazio
+    Enquanto existe vértice de G que não pertence a nenhum conjunto em C
+        v <- vértice de G que não pertence a nenhum conjunto em C
+        Se v não tem vizinho em algum conjunto K em C
+            acrescente v ao conjunto K
+        Senão
+            acrescente o conjunto {v} a C
+    Devolva C
+    \end{verbatim} 
+    \begin{enumerate}
+        \item Prove que o algoritmo nem sempre devolve uma coloração mínima do grafo.
+        \item Um estudante afirma que se o vértice escolhido no início do laço tiver o maior grau possível, então o algoritmo devolve sempre uma coloração mínima do grafo. Ele está correto? Justifique. 
+        \item Outro estudante afirma que se o vértice escolhido no início do laço tiver o menor grau possível, então o algoritmo devolve sempre uma coloração mínima do grafo. Ele está correto? Justifique. 
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
