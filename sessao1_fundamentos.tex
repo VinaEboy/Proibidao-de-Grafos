@@ -96,12 +96,13 @@
         A afirmação é \textbf{falsa}.
     
         \noindent \textbf{i) Escolha de $X$:} O conjunto vazio $\emptyset$ é subconjunto de $V(G)$. 
-    \begin{quote}
-        \textit{Prova por indução que $\Gamma_{G}^{n}(\emptyset) = \emptyset, \forall n \in \mathbb{N}$:} \\
-        Base: Para $n=0$, $\Gamma_{G}^{0}(\emptyset) = \emptyset$ por definição. \\
-        Hipótese de indução: Suponha que $\Gamma_{G}^{k}(\emptyset) = \emptyset$ seja válido para um inteiro arbitrário $k$ no intervalo $k \ge 0$. \\
-        Passo indutivo: Queremos provar que a afirmação vale para $k+1$. Pela definição da recorrência, temos que $\Gamma_{G}^{k+1}(\emptyset) = \Gamma_{G}(\Gamma_{G}^{k}(\emptyset))$. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese ($k \ge 0$), podemos substituir $\Gamma_{G}^{k}(\emptyset)$ por $\emptyset$. Logo, obtemos $\Gamma_{G}(\emptyset) = \emptyset$.
-    \end{quote}
+        \begin{quote}
+            \textit{Prova por indução que $\Gamma_{G}^{n}(\emptyset) = \emptyset, \forall n \in \mathbb{N}$:} \\
+            \textbf{Propriedade $P(n)$:} $\Gamma_{G}^{n}(\emptyset) = \emptyset$. \\
+            \textbf{Base:} Para $n=0$, $\Gamma_{G}^{0}(\emptyset) = \emptyset$ por definição. \\
+            \textbf{Hipótese de indução:} Suponha que a Propriedade $P(n)$ seja válida para todo $n$ no intervalo $[1 \dots k]$, sendo $k$ um valor arbitrário. \\
+            \textbf{Passo indutivo:} Queremos provar que a afirmação vale para $k+1$. Pela definição da recorrência, temos que $\Gamma_{G}^{k+1}(\emptyset) = \Gamma_{G}(\Gamma_{G}^{k}(\emptyset))$. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese ($1 \le k \le k$), temos que $\Gamma_{G}^{k}(\emptyset) = \emptyset$. Logo, aplicando a definição de vizinhança em um conjunto vazio, obtemos $\Gamma_{G}(\emptyset) = \emptyset$.
+        \end{quote}
         Se $V(G) \neq \emptyset$, então $\Gamma_{G}^{n}(\emptyset) \neq V(G)$ para qualquer $n$.
     
         \noindent \textbf{ii) Contra-exemplo:} Seja $G$ tal que $V(G) = \{1\}$ e $E(G) = \emptyset$. As únicas opções para $X$ são $\emptyset$ ou $\{1\}$. Se $X = \emptyset$, recaimos em (i). Se $X = \{1\}$, $\Gamma_{G}(\{1\}) = \emptyset$, e por indução, $\Gamma_{G}^{n}(\{1\}) = \emptyset$ para $n \geq 1$. Logo, nunca alcança $V(G)$.
@@ -119,12 +120,13 @@
         \textbf{Contra-exemplo:} Seja $G$ um grafo tal que $V(G) = \{1, 2\}$ e $E(G) = \{\{1, 2\}\}$. Seja $X = \{1\}$.
         \begin{quote}
             \textit{Prova por indução que $\Gamma_{G}^{n}(\{1\})$ alterna entre $\{1\}$ e $\{2\}, \forall n \in \mathbb{N}$:} \\
-            Base: Para $n=0$ (par), $\Gamma_G^0(\{1\}) = \{1\}$. Para $n=1$ (ímpar), $\Gamma_G^1(\{1\}) = \Gamma_G(\{1\}) = \{2\}$. \\
-            Hipótese de indução: Suponha que, para um inteiro arbitrário $k$ no intervalo $k \ge 0$, seja válido que $\Gamma_G^k(\{1\}) = \{1\}$ se $k$ for par, e $\Gamma_G^k(\{1\}) = \{2\}$ se $k$ for ímpar. \\
-            Passo indutivo: Queremos provar que a afirmação vale para $k+1$. Por definição, $\Gamma_G^{k+1}(\{1\}) = \Gamma_G(\Gamma_G^k(\{1\}))$. Temos dois casos a analisar:
+            \textbf{Propriedade $P(n)$:} $\Gamma_G^n(\{1\}) = \{1\}$ se $n$ é par, e $\Gamma_G^n(\{1\}) = \{2\}$ se $n$ é ímpar. \\
+            \textbf{Base:} Para $n=0$ (par), $\Gamma_G^0(\{1\}) = \{1\}$. Para $n=1$ (ímpar), $\Gamma_G^1(\{1\}) = \Gamma_G(\{1\}) = \{2\}$. \\
+            \textbf{Hipótese de indução:} Suponha que a Propriedade $P(n)$ seja válida para todo $n$ no intervalo $[2 \dots k]$, sendo $k$ um valor arbitrário. \\
+            \textbf{Passo indutivo:} Queremos provar que a afirmação vale para $k+1$. Por definição, $\Gamma_G^{k+1}(\{1\}) = \Gamma_G(\Gamma_G^k(\{1\}))$. Temos dois casos a analisar:
             \begin{itemize}
-                \item Caso $k+1$ seja ímpar: Então $k$ é par. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese, substituímos $\Gamma_G^k(\{1\})$ por $\{1\}$. Aplicando a função, obtemos $\Gamma_G(\{1\}) = \{2\}$.
-                \item Caso $k+1$ seja par: Então $k$ é ímpar. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese, substituímos $\Gamma_G^k(\{1\})$ por $\{2\}$. Aplicando a função, obtemos $\Gamma_G(\{2\}) = \{1\}$.
+                \item Caso $k+1$ seja ímpar: Então $k$ é par. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese ($2 \le k \le k$), temos que $\Gamma_G^k(\{1\}) = \{1\}$. Aplicando a função vizinhança conforme definido em $G$, obtemos $\Gamma_G(\{1\}) = \{2\}$.
+                \item Caso $k+1$ seja par: Então $k$ é ímpar. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese ($2 \le k \le k$), temos que $\Gamma_G^k(\{1\}) = \{2\}$. Aplicando a função vizinhança conforme definido em $G$, obtemos $\Gamma_G(\{2\}) = \{1\}$.
             \end{itemize}
             Portanto, a alternância se mantém para todo $n \in \mathbb{N}$.
         \end{quote}
