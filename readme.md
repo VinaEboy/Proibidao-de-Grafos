@@ -6,6 +6,4 @@ As resoluções foram feitas por alunos contribuidores, ou seja, não são ofici
 
 Exercícios que não foram feitos:
 
-- 6 (preguiça de desenhar)
-- 7
 - Todos a partir do 9 (não deu tempo)

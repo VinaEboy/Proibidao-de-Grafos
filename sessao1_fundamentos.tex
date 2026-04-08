@@ -131,26 +131,122 @@
             Portanto, a alternância se mantém para todo $n \in \mathbb{N}$.
         \end{quote}
         Como o conjunto sempre alterna, não existe $n$ tal que $\Gamma_{G}^{n}(X) = \Gamma_{G}^{n+1}(X)$.
-    \end{enumerate}
+        \end{enumerate}
 
     \item\textsuperscript{*} Seja $\mathcal{F}=\{A_{1},...,A_{n}\}$ uma família de subconjuntos de um conjunto $A$. O grafo de interseção de $\mathcal{F}$ é o grafo $\mathcal{I_{F}}$ dado por 
-    
-    $V(\mathcal{I_{F}}):=\mathcal{F},$ 
-    
-    $E(\mathcal{I}_{\mathcal{F}}):=\{\{A_{i},A_{j}\}|A_{i}\cap A_{j}\ne\emptyset\}$. 
+    \begin{align*}
+        V(\mathcal{I_{F}}) &:= \mathcal{F}, \\
+        E(\mathcal{I}_{\mathcal{F}}) &:= \{\{A_{i},A_{j}\} \mid A_{i}\cap A_{j}\ne\emptyset\}.
+    \end{align*}
     
     \begin{enumerate}
-        \item Seja $G$ o grafo interseção de $\binom{\{1,...,5\}}{2}$. Desenhe $G$. 
+        \item Seja $G$ o grafo interseção de $\binom{\{1,...,5\}}{2}$. Desenhe $G$.
+    
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução:} \\
+        O conjunto de vértices é formado por todas as combinações de 2 elementos:
+        \[
+        V(G) = \{ \{1,2\}, \{1,3\}, \{1,4\}, \{1,5\}, \{2,3\}, \{2,4\}, \{2,5\}, \{3,4\}, \{3,5\}, \{4,5\} \}
+        \]
+        Para $E(G)$, temos uma aresta sempre que dois conjuntos compartilham pelo menos um elemento (30 arestas no total). Abaixo está a representação visual do grafo $G$:
+    
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                scale=1,
+                vertex/.style={circle, draw=black, thick, fill=white, minimum size=28pt, inner sep=0pt, font=\small}
+            ]
+                % Definindo os vértices na mesma posição do Petersen para mostrar a dualidade
+                \node[vertex] (v0) at (90:3) {\{1,2\}};
+                \node[vertex] (v1) at (18:3) {\{3,4\}};
+                \node[vertex] (v2) at (306:3) {\{1,5\}};
+                \node[vertex] (v3) at (234:3) {\{2,3\}};
+                \node[vertex] (v4) at (162:3) {\{4,5\}};
+    
+                \node[vertex] (u0) at (90:1.5) {\{3,5\}};
+                \node[vertex] (u1) at (18:1.5) {\{2,5\}};
+                \node[vertex] (u2) at (306:1.5) {\{2,4\}};
+                \node[vertex] (u3) at (234:1.5) {\{1,4\}};
+                \node[vertex] (u4) at (162:1.5) {\{1,3\}};
+    
 
+                \draw[thick, blue!60] 
+                    % Arestas a partir de v0
+                    (v0) -- (v2) (v0) -- (v3) (v0) -- (u1) (v0) -- (u2) (v0) -- (u3) (v0) -- (u4)
+                    % Arestas a partir de v1
+                    (v1) -- (v3) (v1) -- (v4) (v1) -- (u0) (v1) -- (u2) (v1) -- (u3) (v1) -- (u4)
+                    % Arestas a partir de v2
+                    (v2) -- (v4) (v2) -- (u0) (v2) -- (u1) (v2) -- (u3) (v2) -- (u4)
+                    % Arestas a partir de v3
+                    (v3) -- (u0) (v3) -- (u1) (v3) -- (u2) (v3) -- (u4)
+                    % Arestas a partir de v4
+                    (v4) -- (u0) (v4) -- (u1) (v4) -- (u2) (v4) -- (u3)
+                    % Arestas do ciclo interno (complementares à estrela do Petersen)
+                    (u0) -- (u1) (u1) -- (u2) (u2) -- (u3) (u3) -- (u4) (u4) -- (u0);
+            \end{tikzpicture}
+        \end{figure}
+    
+        \vspace{0.3cm}
+        \item Desenhe $\overline{G}$.
+    
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução:} \\
+        O complemento $\overline{G}$ possui os mesmos vértices, mas as arestas ligam \textbf{apenas} os conjuntos disjuntos (15 arestas no total).
+    
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}[
+                scale=1,
+                vertex/.style={circle, draw=black, thick, fill=white, minimum size=28pt, inner sep=0pt, font=\small}
+            ]
+                % Vértices
+                \node[vertex] (v0) at (90:3) {\{1,2\}};
+                \node[vertex] (v1) at (18:3) {\{3,4\}};
+                \node[vertex] (v2) at (306:3) {\{1,5\}};
+                \node[vertex] (v3) at (234:3) {\{2,3\}};
+                \node[vertex] (v4) at (162:3) {\{4,5\}};
+    
+                \node[vertex] (u0) at (90:1.5) {\{3,5\}};
+                \node[vertex] (u1) at (18:1.5) {\{2,5\}};
+                \node[vertex] (u2) at (306:1.5) {\{2,4\}};
+                \node[vertex] (u3) at (234:1.5) {\{1,4\}};
+                \node[vertex] (u4) at (162:1.5) {\{1,3\}};
+    
+                % Arestas do ciclo exterior (pentágono)
+                \draw[thick, black] (v0) -- (v1) -- (v2) -- (v3) -- (v4) -- (v0);
+    
+                % Arestas da estrela interior (pentagrama)
+                \draw[thick, black] (u0) -- (u2) -- (u4) -- (u1) -- (u3) -- (u0);
+    
+                % Arestas conectando o ciclo à estrela
+                \draw[thick, black] (v0) -- (u0);
+                \draw[thick, black] (v1) -- (u1);
+                \draw[thick, black] (v2) -- (u2);
+                \draw[thick, black] (v3) -- (u3);
+                \draw[thick, black] (v4) -- (u4);
+            \end{tikzpicture}
+        \end{figure}
+    
+        \vspace{0.3cm}
+        \item Verifique que $\overline{G}$ é isomorfo ao Grafo de Petersen.
         
-        \item Desenhe $\overline{G}$ 
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução (c):} \\
+        Para verificar o isomorfismo entre $\overline{G}$ (o grafo de Kneser $KG_{5,2}$) e o Grafo de Petersen, estabelecemos uma bijeção $f: \binom{\{1,2,3,4,5\}}{2} \to V(P)$, onde $V(P) = \{a_0, a_1, a_2, a_3, a_4, b_0, b_1, b_2, b_3, b_4\}$. Na rotulação padrão de Petersen, as adjacências são definidas por: ciclo externo ($a_i \sim a_{i+1}$), hastes ($a_i \sim b_i$) e estrela interna ($b_i \sim b_{i+2}$), com índices em módulo 5.
         
-        \item Verifique que $\overline{G}$ isomorfo ao Grafo de Petersen. \\
-        
+        A bijeção $f$ que preserva a relação de disjunção (adjacência em $\overline{G}$) é:
+        \begin{align*}
+            f(\{1, 2\}) &= a_0 & f(\{3, 5\}) &= b_0 \\
+            f(\{3, 4\}) &= a_1 & f(\{2, 5\}) &= b_1 \\
+            f(\{5, 1\}) &= a_2 & f(\{2, 4\}) &= b_2 \\
+            f(\{2, 3\}) &= a_3 & f(\{1, 4\}) &= b_3 \\
+            f(\{4, 5\}) &= a_4 & f(\{1, 3\}) &= b_4
+        \end{align*}
+    \end{enumerate}
+    
         \\
         Dados inteiros n e k, o complemento do grafo interseção de $\binom{\{1,...,n\}}{k}$ é conhecido como \textbf{grafo de Kneser} com parâmetros n e k.
         
-    \end{enumerate}
     
     \item\textsuperscript{*} Um grafo $G$ é um grafo de intervalo se é o grafo de interseção de um conjunto de intervalos fechados de $\mathbb{R}$. 
     \begin{enumerate}
@@ -159,11 +255,66 @@
         \begin{figure}[H]
             \centering \includegraphics[width=0.8\textwidth]{q7.png}
         \end{figure}
+
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução:} \\
+        Sim, ambos os grafos $G_1$ e $G_2$ são grafos de intervalo. Para justificar, basta exibirmos um conjunto de intervalos fechados na reta real cuja interseção corresponda exatamente ao conjunto de arestas de cada grafo.
         
+        Para o grafo $G_1$, com $V(G_1) = \{a,b,c,d\}$ e $E(G_1) = \{\{a,d\}, \{a,b\} , \{a,c\}, \{b,c\}\}$:
+        Podemos definir a seguinte família de intervalos:
+        \begin{align*}
+            I_a &= [1.5, 4] \\
+            I_b &= [1, 2] \\
+            I_c &= [2, 3] \\
+            I_d &= [3.5, 4.5]
+        \end{align*}
+        Verificação das arestas (interseções não vazias):
+        \begin{itemize}
+            \item $I_a \cap I_b = [1.5, 2] \neq \emptyset \implies \{a,b\} \in E(G_1)$
+            \item $I_a \cap I_c = [2, 3] \neq \emptyset \implies \{a,c\} \in E(G_1)$
+            \item $I_a \cap I_d = [3.5, 4] \neq \emptyset \implies \{a,d\} \in E(G_1)$
+            \item $I_b \cap I_c = \{2\} \neq \emptyset \implies \{b,c\} \in E(G_1)$
+        \end{itemize}
+        Todas as outras interseções (como $I_b \cap I_d$ e $I_c \cap I_d$) são vazias, o que modela perfeitamente a estrutura de $G_1$.
+        
+        Para o grafo $G_2$ (um grafo estrela bipartido $K_{1,3}$), com $V(G_2) = \{1,2,3,4\}$ e $E(G_2) = \{\{1,4\}, \{1,2\}, \{1,3\}\}$:
+        Podemos definir a seguinte família de intervalos:
+        \begin{align*}
+            I_1 &= [2, 4] \\
+            I_2 &= [1, 2] \\
+            I_3 &= [3, 3] \\
+            I_4 &= [4, 5]
+        \end{align*}
+        Verificação das arestas:
+        \begin{itemize}
+            \item $I_1 \cap I_2 = \{2\} \neq \emptyset \implies \{1,2\} \in E(G_2)$
+            \item $I_1 \cap I_3 = \{3\} \neq \emptyset \implies \{1,3\} \in E(G_2)$
+            \item $I_1 \cap I_4 = \{4\} \neq \emptyset \implies \{1,4\} \in E(G_2)$
+        \end{itemize}
+        Os intervalos $I_2$, $I_3$ e $I_4$ são mutuamente disjuntos, confirmando a ausência de arestas entre as folhas, o que modela perfeitamente $G_2$.
+        
+        \vspace{0.3cm}
+
         \item Dê um exemplo de um grafo que não é grafo de intervalo e prove que seu exemplo está correto.
+
+        \noindent \textbf{Resolução:} \\
+        Um exemplo clássico de um grafo que não é um grafo de intervalo é o ciclo simples de 4 vértices, $C_4$.
+        
+        \textbf{Prova:} \\
+        Seja $C_4$ um grafo com vértices $V = \{v_1, v_2, v_3, v_4\}$ e arestas $E = \{\{v_1, v_2\}, \{v_2, v_3\}, \{v_3, v_4\}, \{v_4, v_1\}\}$.
+        Suponha, por absurdo, que $C_4$ seja um grafo de intervalo. Então, existiriam intervalos fechados $I_1, I_2, I_3, I_4 \subset \mathbb{R}$ correspondentes a cada vértice que preservam as adjacências.
+        
+        Como não existe aresta entre $v_1$ e $v_3$ em $C_4$, temos que a interseção deve ser vazia ($I_1 \cap I_3 = \emptyset$). Isso significa que, na reta real, um intervalo deve estar posicionado estritamente à esquerda do outro. Sem perda de generalidade, assuma que todo o intervalo $I_1$ está à esquerda de $I_3$ (ou seja, $\max(I_1) < \min(I_3)$).
+        
+        O vértice $v_2$ é adjacente a ambos $v_1$ e $v_3$. Logo, o intervalo $I_2$ deve possuir interseção com $I_1$ e com $I_3$. Para que um único intervalo fechado $I_2$ intercepte um conjunto à sua esquerda ($I_1$) e outro à sua direita ($I_3$), $I_2$ deve obrigatoriamente abranger todo o espaço vazio existente entre $\max(I_1)$ e $\min(I_3)$.
+        
+        Pelo mesmo raciocínio, o vértice $v_4$ também é adjacente a $v_1$ e $v_3$. Logo, $I_4$ também deve ter interseção com $I_1$ e $I_3$, sendo forçado a abranger o mesmo espaço vazio contínuo entre $\max(I_1)$ e $\min(I_3)$.
+        
+        Se tanto $I_2$ quanto $I_4$ atravessam simultaneamente a lacuna espacial entre $I_1$ e $I_3$, então obrigatoriamente eles devem se sobrepor em algum ponto dentro dessa lacuna. Consequentemente, $I_2 \cap I_4 \neq \emptyset$, o que implicaria na existência da aresta $\{v_2, v_4\}$ no grafo. 
+        
+        Como a aresta $\{v_2, v_4\}$ não pertence a $C_4$ (pois é um ciclo sem cordas), chegamos a uma contradição. Portanto, $C_4$ não pode ser representado como um grafo de intervalo.
     \end{enumerate}
 
-    \newpage
     \item\textsuperscript{*} Prove que os grafos abaixo são isomorfos. 
     \begin{figure}[H]
         \centering
