@@ -67,21 +67,70 @@
     
     \vspace{0.2cm}
     \noindent \textbf{ii) Por matriz de adjacência:} Na representação por matriz de adjacência $n \times n$, temos que a diagonal principal é $0$ (não tem laços) e a matriz é simétrica (o grafo não é direcional). Portanto temos $\frac{n \times n - n}{2}$ quadradinhos para preencher com $0$ ou $1$. Pelo princípio multiplicativo, temos $2^{\left[ \frac{n(n-1)}{2} \right]}$ possibilidades.
-
-    \item\textsuperscript{\#} Seja $G$ um grafo. Dados $X\subseteq V(G)$ e $n\in\mathbb{N}$ vamos definir $\Gamma_{G}^{n}(X)$ como segue. 
     
+    \item\textsuperscript{\#} Seja $G$ um grafo. Dados $X\subseteq V(G)$ e $n\in\mathbb{N}$ vamos definir $\Gamma_{G}^{n}(X)$ como segue:
     \begin{equation*}
-    \Gamma_{G}^{n}(X):=\begin{cases}X,& \text{se } n=0.\\ \Gamma_{G}(\Gamma_{G}^{n-1}(X)),& \text{se } n>0.\end{cases} 
-
+    \Gamma_{G}^{n}(X):=\begin{cases}X,& \text{se } n=0.\\ \Gamma_{G}(\Gamma_{G}^{n-1}(X)),& \text{se } n>0.\end{cases}
     \end{equation*}
-    \begin{enumerate}
-        \item Exiba os conjuntos $\Gamma_{G}^{n}(\{a_{0},b_{2}\})$ para $n\in\{1,2,3,4,5\}$ onde $G$ é o grafo da esquerda no Exercício 8. 
-        \item É verdade que para qualquer grafo $G$ e qualquer conjunto $X$ de seus vértices, existe um valor de $n\in\mathbb{N}$ tal que $\Gamma_{G}^{n}(X)=V(G)$? Justifique. 
-        
-        \item É verdade que para qualquer grafo $G$ e qualquer conjunto $X$ de seus vértices, existe um valor de $n\in\mathbb{N}$ tal que $\Gamma_{G}^{n}(X)=\Gamma_{G}^{n+1}(X)$? Justifique. 
-        
-    \end{enumerate}
     
+    \begin{enumerate}
+        \item Exiba os conjuntos $\Gamma_{G}^{n}(\{a_{0},b_{2}\})$ para $n\in\{1,2,3,4,5\}$ onde $G$ é o grafo da esquerda no Exercício 8.
+    
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução:} \\
+        Por definição, $\Gamma_{G}(X) = \bigcup_{v \in X} \Gamma_G(v)$. Aplicando a recorrência para o Grafo de Petersen (Exercício 8, esquerda):
+        \begin{itemize}
+            \item $\Gamma_{G}^{0}(\{a_{0},b_{2}\}) = \{a_{0},b_{2}\}$ (Caso base)
+            \item $\Gamma_{G}^{1}(\{a_{0},b_{2}\}) = \{a_{1},a_{2},a_{4},b_{0}, b_{4}\}$
+            \item $\Gamma_{G}^{2}(\{a_{0},b_{2}\}) = \{a_{0}, a_1, a_2, a_3, a_4, b_1, b_2, b_3, b_4\}$
+            \item $\Gamma_{G}^{3}(\{a_{0},b_{2}\}) = V(G)$
+            \item $\Gamma_{G}^{4}(\{a_{0},b_{2}\}) = V(G)$
+            \item $\Gamma_{G}^{5}(\{a_{0},b_{2}\}) = V(G)$
+        \end{itemize}
+    
+        \vspace{0.3cm}
+        \item É verdade que para qualquer grafo $G$ e qualquer conjunto $X$ de seus vértices, existe um valor de $n\in\mathbb{N}$ tal que $\Gamma_{G}^{n}(X)=V(G)$? Justifique.
+    
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução:} \\
+        A afirmação é \textbf{falsa}.
+    
+        \noindent \textbf{i) Escolha de $X$:} O conjunto vazio $\emptyset$ é subconjunto de $V(G)$. 
+    \begin{quote}
+        \textit{Prova por indução que $\Gamma_{G}^{n}(\emptyset) = \emptyset, \forall n \in \mathbb{N}$:} \\
+        Base: Para $n=0$, $\Gamma_{G}^{0}(\emptyset) = \emptyset$ por definição. \\
+        Hipótese de indução: Suponha que $\Gamma_{G}^{k}(\emptyset) = \emptyset$ seja válido para um inteiro arbitrário $k$ no intervalo $k \ge 0$. \\
+        Passo indutivo: Queremos provar que a afirmação vale para $k+1$. Pela definição da recorrência, temos que $\Gamma_{G}^{k+1}(\emptyset) = \Gamma_{G}(\Gamma_{G}^{k}(\emptyset))$. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese ($k \ge 0$), podemos substituir $\Gamma_{G}^{k}(\emptyset)$ por $\emptyset$. Logo, obtemos $\Gamma_{G}(\emptyset) = \emptyset$.
+    \end{quote}
+        Se $V(G) \neq \emptyset$, então $\Gamma_{G}^{n}(\emptyset) \neq V(G)$ para qualquer $n$.
+    
+        \noindent \textbf{ii) Contra-exemplo:} Seja $G$ tal que $V(G) = \{1\}$ e $E(G) = \emptyset$. As únicas opções para $X$ são $\emptyset$ ou $\{1\}$. Se $X = \emptyset$, recaimos em (i). Se $X = \{1\}$, $\Gamma_{G}(\{1\}) = \emptyset$, e por indução, $\Gamma_{G}^{n}(\{1\}) = \emptyset$ para $n \geq 1$. Logo, nunca alcança $V(G)$.
+    
+        \noindent \textbf{iii) Estrutura de $G$:} Para a afirmação ter chance de ser verdadeira, $G$ não pode conter vértices isolados e deve ser conexo (e com $|V(G)| > 1$). Vértices isolados nunca são incluídos em uma vizinhança $\Gamma_G(X)$ a menos que já estivessem em $X$.
+    
+        \noindent \textbf{iv) Relação com o item (c):} A validade de (b) estaria condicionada à estabilidade do conjunto em $V(G)$, o que é refutado no próximo item.
+    
+        \vspace{0.3cm}
+        \item É verdade que para qualquer grafo $G$ e qualquer conjunto $X$ de seus vértices, existe um valor de $n\in\mathbb{N}$ tal que $\Gamma_{G}^{n}(X)=\Gamma_{G}^{n+1}(X)$? Justifique.
+    
+        \vspace{0.3cm}
+        \noindent \textbf{Resolução:} \\
+        A afirmação é \textbf{falsa}. \\
+        \textbf{Contra-exemplo:} Seja $G$ um grafo tal que $V(G) = \{1, 2\}$ e $E(G) = \{\{1, 2\}\}$. Seja $X = \{1\}$.
+        \begin{quote}
+            \textit{Prova por indução que $\Gamma_{G}^{n}(\{1\})$ alterna entre $\{1\}$ e $\{2\}, \forall n \in \mathbb{N}$:} \\
+            Base: Para $n=0$ (par), $\Gamma_G^0(\{1\}) = \{1\}$. Para $n=1$ (ímpar), $\Gamma_G^1(\{1\}) = \Gamma_G(\{1\}) = \{2\}$. \\
+            Hipótese de indução: Suponha que, para um inteiro arbitrário $k$ no intervalo $k \ge 0$, seja válido que $\Gamma_G^k(\{1\}) = \{1\}$ se $k$ for par, e $\Gamma_G^k(\{1\}) = \{2\}$ se $k$ for ímpar. \\
+            Passo indutivo: Queremos provar que a afirmação vale para $k+1$. Por definição, $\Gamma_G^{k+1}(\{1\}) = \Gamma_G(\Gamma_G^k(\{1\}))$. Temos dois casos a analisar:
+            \begin{itemize}
+                \item Caso $k+1$ seja ímpar: Então $k$ é par. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese, substituímos $\Gamma_G^k(\{1\})$ por $\{1\}$. Aplicando a função, obtemos $\Gamma_G(\{1\}) = \{2\}$.
+                \item Caso $k+1$ seja par: Então $k$ é ímpar. Usando a hipótese da indução porque $k$ pertence ao intervalo da hipótese, substituímos $\Gamma_G^k(\{1\})$ por $\{2\}$. Aplicando a função, obtemos $\Gamma_G(\{2\}) = \{1\}$.
+            \end{itemize}
+            Portanto, a alternância se mantém para todo $n \in \mathbb{N}$.
+        \end{quote}
+        Como o conjunto sempre alterna, não existe $n$ tal que $\Gamma_{G}^{n}(X) = \Gamma_{G}^{n+1}(X)$.
+    \end{enumerate}
+
     \item\textsuperscript{*} Seja $\mathcal{F}=\{A_{1},...,A_{n}\}$ uma família de subconjuntos de um conjunto $A$. O grafo de interseção de $\mathcal{F}$ é o grafo $\mathcal{I_{F}}$ dado por 
     
     $V(\mathcal{I_{F}}):=\mathcal{F},$ 
@@ -90,28 +139,51 @@
     
     \begin{enumerate}
         \item Seja $G$ o grafo interseção de $\binom{\{1,...,5\}}{2}$. Desenhe $G$. 
+
+        
         \item Desenhe $\overline{G}$ 
         
-        \item Verifique que $\overline{G}$ (isomorfo a)o Grafo de Petersen. 
+        \item Verifique que $\overline{G}$ isomorfo ao Grafo de Petersen. \\
+        
+        \\
+        Dados inteiros n e k, o complemento do grafo interseção de $\binom{\{1,...,n\}}{k}$ é conhecido como \textbf{grafo de Kneser} com parâmetros n e k.
+        
     \end{enumerate}
     
     \item\textsuperscript{*} Um grafo $G$ é um grafo de intervalo se é o grafo de interseção de um conjunto de intervalos fechados de $\mathbb{R}$. 
     \begin{enumerate}
         \item Os grafos $G_{1}$ e $G_{2}$ abaixo são grafos de intervalo? Justifique. 
         
-        \begin{figure}[h]
+        \begin{figure}[H]
             \centering \includegraphics[width=0.8\textwidth]{q7.png}
         \end{figure}
         
         \item Dê um exemplo de um grafo que não é grafo de intervalo e prove que seu exemplo está correto.
     \end{enumerate}
-    
+
+    \newpage
     \item\textsuperscript{*} Prove que os grafos abaixo são isomorfos. 
-    \begin{figure}[h]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=1.0\textwidth]{q8.png}
     \end{figure}
     
+    \noindent \textbf{Resolução:}\\
+    Para provar que os grafos $G$ (esquerda) e $H$ (direita) são isomorfos, devemos mostrar uma bijeção $f: V(G) \rightarrow V(H)$ tal que, definindo $E'(G) = \{ \{f(u), f(v)\} \mid \{u,v\} \in E(G)\}$, tenhamos $E'(G) = E(H)$. Em outras palavras, a função deve preservar todas as adjacências.
+    
+    Podemos construir essa bijeção mapeando o ciclo de tamanho 6 presente em $G$ ($a_0 - a_1 - a_2 - b_2 - b_4 - a_4 - a_0$) para o hexágono externo de $H$ ($c_1 - c_0 - c_5 - c_4 - c_3 - c_2 - c_1$), e então deduzindo os vizinhos restantes (a "estrela" central). 
+    
+    A bijeção $f$ que prova o isomorfismo de $G$ e $H$ é:
+    \begin{align*}
+        f(a_0) &= c_1 & f(b_0) &= d_0 \\
+        f(a_1) &= c_0 & f(b_1) &= d_2 \\
+        f(a_2) &= c_5 & f(b_2) &= c_4 \\
+        f(a_3) &= d_1 & f(b_3) &= d_3 \\
+        f(a_4) &= c_2 & f(b_4) &= c_3
+    \end{align*}
+    
+    \textbf{Justificativa:} Pode-se verificar exaustivamente que todas as 15 arestas originais de $E(G)$ têm correspondência exata em $E(H)$. Por exemplo, a aresta $\{a_0, a_1\} \in E(G)$ é mapeada para $\{c_1, c_0\} \in E(H)$; a aresta $\{a_3, b_3\} \in E(G)$ é mapeada para $\{d_1, d_3\} \in E(H)$; e a aresta $\{a_0, b_0\} \in E(G)$ é mapeada para $\{c_1, d_0\} \in E(H)$. Como a bijeção preserva a estrutura de conexões, os grafos são isomorfos.
+
     \item\textsuperscript{*} Um grafo é auto-complementar se é isomorfo ao seu complemento. 
     \begin{enumerate}
         \item Dê um exemplo de um grafo auto-complementar não trivial. 
